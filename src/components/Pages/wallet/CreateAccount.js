@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
 import CustomerValidations from './CustomerValidations';
 import './style.css'
+
 
 
 export default class CreateAccount extends Component {
@@ -28,12 +30,32 @@ export default class CreateAccount extends Component {
     this.resetValidators = this.resetValidators.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.isFormValid = this.isFormValid.bind(this);
+    this.onSubmit=this.onSubmit.bind(this);
   }
   
   /** 
    * This function is called whenever a form input is changed
    * Which in turn updates the state of this component and validators
    */
+  onSubmit(e)
+  {
+    e.preventDefault();
+    let customer = {name: this.state.userinfo.name, password: this.state.userinfo.password, mobileNo: this.state.userinfo.mobileNo};
+    console.log('employee => ' + JSON.stringify(customer));
+
+    this.setState((state) => ({  ...state,error: '' }));
+            this.props.onSubmitCustomer(
+                
+                {
+                   userInfo:{ 
+                    name: this.state.userInfo.name,
+                    password: this.state.userInfo.password,
+                    mobileNo : this.state.userInfo.mobileNo
+                   }
+                },
+                
+            );
+  }
   handleInputChange(event, inputPropName) {
     const newState = Object.assign({}, this.state);
     newState.userInfo[inputPropName] = event.target.value;
@@ -41,19 +63,6 @@ export default class CreateAccount extends Component {
     this.updateValidators(inputPropName, event.target.value);
   }
   
-   /** 
-   * This function handles the logic when submiting the form.
-   * @TODO make an API request to authenticate the user
-   */
-  handleSubmit(e) {
-    console.log(this.state.userInfo);
-    console.log('Yepee! form submitted');
-    e.preventDefault();
-  }
-  
-   /** 
-   * This function updates the state of the validator for the specified validator
-   */
   updateValidators(fieldName, value) {
     this.validators[fieldName].errors = [];
     this.validators[fieldName].state = value;
@@ -120,7 +129,7 @@ export default class CreateAccount extends Component {
         <div className="font-weight-bold">
         <h2 className="text-center mb-4">CREATE ACCOUNT</h2>
         </div>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <input
                   id="name"
@@ -159,7 +168,7 @@ export default class CreateAccount extends Component {
             </div>
             <div className="row">
               <div className="input-field col s12 signup-btn">
-                <button className={`btn btn-primary btn-block ${this.isFormValid() ? '' : 'disabled'}`}>
+                <button className={`btn btn-primary btn-block ${this.isFormValid() ? '' : 'disabled'}`} >
                    SignUp
                 </button>
               </div>
