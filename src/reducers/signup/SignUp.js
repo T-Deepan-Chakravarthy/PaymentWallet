@@ -1,13 +1,13 @@
-const customersReducerDefaultState = [];
-
-export default (state = customersReducerDefaultState, action) => {
-    switch (action.type) {
-        case 'ADD_CUSTOMER':
+const Reducer = (state = [],action) => {
+    switch(action.type){
+        case "CREATE_ACCOUNT":
             return [
                 ...state,
                 action.customer
             ];
         default:
             return state;
-        }
-    };
+    }
+}
+
+export default Reducer;

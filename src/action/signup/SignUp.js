@@ -1,29 +1,17 @@
-import axios from '../../axios/Axios';
+import axios from '../../axios/Axios'
 
-const _addCustomer = (customer) => ({
-    type: 'ADD_CUSTOMER',
+const _createAccount = customer => ({
+    type : 'CREATE_ACCOUNT',
     customer
 });
 
-export const addCustomer = (customerData = {
-    name: '',
-    password: '',
-    mobileNo:''
-  
-}) => {
-    return (dispatch) => {
-        console.log("in add cus action cusdata"+customerData.mobileNo)
-        const customer = {
-            name: customerData.name,
-            password:customerData.password,
-            mobileNo:customerData.mobileNo
-        };
-        console.log("cus dispatch"+customer.name)
-        return axios.post('customer', customer).then(result => {
-            dispatch(_addCustomer(result.data));
-        });
-    };
-};
-
-
+export const createAccount = customer => {
+    return (dispatch) =>{
+        console.log("createAccountAction");
+        return axios.post("http://localhost:9191/api/pwa/wallet/create-account",customer).then(result=>{
+            dispatch(_createAccount(result.data))
+            }
+        );    
+    }
+}
 
