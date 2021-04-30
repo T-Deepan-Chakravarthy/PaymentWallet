@@ -5,9 +5,16 @@ const Reducer = (state = [],action) => {
                 ...state,
                 action.customer
             ];
+        case "LOGIN":
+            return [
+                ...state,
+                action.customer
+            ]
         default:
             return state;
     }
 }
+
+
 
 export default Reducer;

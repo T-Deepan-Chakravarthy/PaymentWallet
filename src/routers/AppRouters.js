@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import AddCustomerMap from '../components/pages/wallet/CreateAccountMap'
-
+import SignUp from "../components/pages/wallet/CreateAccount";
+import Login from "../components/pages/login/Login";
 
 const AppRouter = () => (
     <BrowserRouter>
         <div className='container'>
             <Switch>
-                <Route path="/add" component={AddCustomerMap} />
+            <Route path="/sign-up" component={SignUp}/>
+            <Route path="/" component={Login}/>
             </Switch>
         </div>
     </BrowserRouter>

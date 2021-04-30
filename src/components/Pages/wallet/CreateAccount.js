@@ -94,7 +94,7 @@ export default class CreateAccount extends React.Component{
         event.preventDefault();
         store().dispatch(createAccount(this.state.customer));
     }
-
+     
     render() {
         return(
             <div className="banner">
@@ -122,7 +122,7 @@ export default class CreateAccount extends React.Component{
                     type="password"
                     onChange={(event)=>this.handleChange(event)}/>
                     </div>
-                    </div className="form-group">
+                    <div className="form-group">
                     <input 
                     id="number"
                     className="form-control form-control-lg"
@@ -139,16 +139,6 @@ export default class CreateAccount extends React.Component{
                     </div>
                     </div>
                     </form>
-                    <div>
-                      <h3 className="text-center">OR</h3>
-                    </div>
-                    <div className="row">
-                    <div className="input-field col s12 signup-btn">
-                    <button className="btn btn-primary btn-block">
-                     Login
-                    </button>
-                    </div>
-                    </div>
                     </div>
                     </div>
                     </div>
