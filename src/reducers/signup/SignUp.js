@@ -4,7 +4,7 @@ const Reducer = (state = [],action) => {
             return [
                 ...state,
                 action.customer
-            ];
+            ]
         case "LOGIN":
             return [
                 ...state,
@@ -14,7 +14,5 @@ const Reducer = (state = [],action) => {
             return state;
     }
 }
-
-
 
 export default Reducer;

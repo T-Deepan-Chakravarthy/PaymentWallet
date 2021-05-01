@@ -1,18 +1,18 @@
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import { Provider } from "react-redux";
+import store from "./store/Store";
+import Routers from "./routers/AppRouters"
+import React from "react";
 
-import "../node_modules/bootstrap/dist/css/bootstrap.css"
-import {Provider} from 'react-redux';
-import store from './store/Store'
-import AppRouter from './routers/AppRouters'
-
-function App() {
+const App = () => {
   return (
     <div>
       <Provider store={store()}>
-        <AppRouter/>
+        <Routers/>
       </Provider>
     </div>
-    
   );
-}
+};
 
 export default App;

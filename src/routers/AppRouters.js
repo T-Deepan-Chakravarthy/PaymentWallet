@@ -1,17 +1,20 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import SignUp from "../components/pages/wallet/CreateAccount";
 import Login from "../components/pages/login/Login";
+import Main from "../routers/Main";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import React from "react";
+import PrivateRoute from '../routers/PrivateRoute';
 
-const AppRouter = () => (
-    <BrowserRouter>
-        <div className='container'>
-            <Switch>
-            <Route path="/sign-up" component={SignUp}/>
-            <Route path="/" component={Login}/>
-            </Switch>
-        </div>
-    </BrowserRouter>
-);
+const AppRouters = () =>  {
+    return(
+        <BrowserRouter>
+          <Switch>
+            <Route path="/sign-up" component={SignUp} />
+            <Route path="/login" component={Login} />
+            <PrivateRoute path="/" component={Main}  exact={true} />
+          </Switch>
+        </BrowserRouter>
+    );
+}
 
-export default AppRouter;
+export default AppRouters;

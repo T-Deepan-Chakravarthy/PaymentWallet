@@ -2,8 +2,9 @@ import React from "react";
 import { login } from "../../../action/signup/SignUp";
 import {Link} from 'react-router-dom';
 import store from '../../../store/Store';
+import User from '../wallet/User'
 import './style.css' 
-import CustomerValidations from './CustomerValidations'
+
 
 export default class Login extends React.Component{
 
@@ -19,81 +20,24 @@ export default class Login extends React.Component{
                     walletId:0,
                     balance:0
                 }
-            }
-        }
-        this.validators = CustomerValidations;
-        this.resetValidators();
-        this.displayValidationErrors = this.displayValidationErrors.bind(this);
-        this.updateValidators = this.updateValidators.bind(this);
-        this.resetValidators = this.resetValidators.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.isFormValid = this.isFormValid.bind(this);
-    }
-
-    updateValidators(fieldName, value) {
-        this.validators[fieldName].errors = [];
-        this.validators[fieldName].state = value;
-        this.validators[fieldName].valid = true;
-        this.validators[fieldName].rules.forEach((rule) => {
-          if (rule.test instanceof RegExp) {
-            if (!rule.test.test(value)) {
-              this.validators[fieldName].errors.push(rule.message);
-              this.validators[fieldName].valid = false;
-            }
-          } else if (typeof rule.test === 'function') {
-            if (!rule.test(value)) {
-              this.validators[fieldName].errors.push(rule.message);
-              this.validators[fieldName].valid = false;
-            }
+            },
+            error:""
           }
-        });
-      }
-      
-      resetValidators() {
-          Object.keys(this.validators).forEach((fieldName) => {
-          this.validators[fieldName].errors = [];
-          this.validators[fieldName].state = '';
-          this.validators[fieldName].valid = false;
-        });
-      }
-      
-      displayValidationErrors(fieldName) {
-        const validator = this.validators[fieldName];
-        const result = '';
-        if (validator && !validator.valid) {
-          const errors = validator.errors.map((info, index) => {
-            return <span className="error" key={index}>* {info}</span>;
-          });
-    
-          return (
-            <div className="col s12 row">
-              {errors}
-            </div>
-          );
-        }
-        return result;
-      }
-      
-      isFormValid() {
-        let status = true;
-        Object.keys(this.validators).forEach((field) => {
-          if (!this.validators[field].valid) {
-            status = false;
-          }
-        });
-        return status;
-      }
+        }     
 
     handleChange = event => {
         let nam = event.target.name;
         let val = event.target.value;
-        this.updateValidators(nam,event.target.value);
-        this.setState({...this.state.customer, [nam]:val});
+        this.setState({customer:{...this.state.customer, [nam]:val}});
     }
 
     handleSubmit = event => {
         event.preventDefault();
+        console.log(this.state);
+        console.log(this.state.customer.name+" hel");
         store().dispatch(login(this.state.customer));
+        console.log(User);
+        
     }
 
     render() {
@@ -105,28 +49,27 @@ export default class Login extends React.Component{
           <h2 className="text-center mb-4">LOGIN</h2>
           </div>
               <form onSubmit={event=>this.handleSubmit(event)}>
+              <div id="error">{this.state.error}</div>
               <div className="form-group">
                   <input 
-                  id="number"
                   className="form-control form-control-lg"
                   placeholder="Enter your MobileNumber"
                   name="mobileNo"
                   type="text"
-                  onChange={(event)=>this.handleChange(event)}/>
+                  onChange={event=>this.handleChange(event)}/>
                   </div>
                   <div className="form-group">
                   <input 
-                  id="password"
                   className="form-control form-control-lg"
                   placeholder="Enter your Password"
                   name="password"
-                  type="password"
-                  onChange={(event)=>this.handleChange(event)}/>
+                  type="text"
+                  onChange={event=>this.handleChange(event)}/>
                   </div>
                     <div>
                     <div className="row">
                     <div className="input-field col s12 signup-btn">
-                    <button className={`btn btn-primary btn-block ${this.isFormValid() ? '' : 'disabled'}`} type="submit">
+                    <button className="btn btn-primary btn-block" type="submit">
                      Login
                     </button>
                     </div>
@@ -140,12 +83,19 @@ export default class Login extends React.Component{
                     </Link>
                     </div>
                     </div>
+                    <div className="row">
+                    <div className="input-field col s12 signup-btn">
+                    <Link to="/home">
+                        <button className="btn btn-primary btn-block" type="button">Home</button>
+                    </Link>   
+                    </div>
+                    </div>
                         </form>
                     </div>
                 </div>
             </div>
         
-        );
+      );
     };
 }
 
