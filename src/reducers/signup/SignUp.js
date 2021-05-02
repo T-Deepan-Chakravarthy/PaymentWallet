@@ -10,6 +10,15 @@ const Reducer = (state = [],action) => {
                 ...state,
                 action.customer
             ]
+        case "GET_LIST":
+            console.log(action.list);
+            return action.list;
+
+        case "ADD_ACCOUNT":
+            return [
+                ...state,
+                action.bankaccount
+            ]
         default:
             return state;
     }

@@ -1,7 +1,10 @@
+import {Link} from 'react-router-dom';
+
 const home = () =>{
+    console.log("home");
     return(
         <div>
-            This is home page
+            <Link to='/home/send-money'><button type="button">Send</button></Link>
         </div>
     )
 }

@@ -37,8 +37,15 @@ export default class Login extends React.Component{
         console.log(this.state.customer.name+" hel");
         store().dispatch(login(this.state.customer));
         console.log(User);
+        setTimeout(this.checkLogin,1000);
         
     }
+
+    checkLogin=()=>{
+      if(User.getLoggedIn()){
+          this.props.history.push('/');
+      }
+  }
 
     render() {
         return(

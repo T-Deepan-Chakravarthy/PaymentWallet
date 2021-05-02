@@ -11,8 +11,6 @@ const User = {
         this.name = customer.name;
         this.mobileNo = customer.mobileNo;
         this.wallet = {...customer.walletDTO};
-        // this.walletId = customer.walletDTO.walletId;
-        // this.balance = customer.walletDTO.balance;
         this.isLoggedIn = true;
     },
     logout(){
@@ -24,7 +22,7 @@ const User = {
     },
     getLoggedIn(){
         return this.isLoggedIn; 
-    }
+    },    
 }
 
 export default User;
