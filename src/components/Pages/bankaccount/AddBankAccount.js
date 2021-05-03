@@ -1,6 +1,6 @@
 import React from 'react'
 import store from '../../../store/Store'
-import user from '../wallet/User'
+import User from '../wallet/User'
 import {addbankaccount} from '../../../action/bankaccount/Bank'
 export default  class AddBanKAccount extends React.Component{
 
@@ -13,10 +13,7 @@ export default  class AddBanKAccount extends React.Component{
                 ifscCode:"",
                 bankName:"",
                 balance:"",
-                wallet:{
-                 walletId:0,
-                 balance:0
-                }
+                wallet:{...User.getCustomer().wallet}
 
             }
         }
@@ -31,8 +28,7 @@ export default  class AddBanKAccount extends React.Component{
     handleSubmit = event =>{
         event.preventDefault();
         console.log(this.state.bankaccount);
-        this.setState({wallet:{...user.getCustomer().wallet}})
-        console.log(user.getCustomer());
+        console.log(User.getCustomer());
         console.log(this.state.bankaccount.wallet);
         store().dispatch(addbankaccount(this.state.bankaccount));
     }

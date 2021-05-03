@@ -5,6 +5,7 @@ const home = () =>{
     return(
         <div>
             <Link to='/send-money'><button type="button">Send</button></Link>
+            <Link to='/Bill-payment'><button type="button">BillPayment</button></Link>
         </div>
     )
 }

@@ -14,6 +14,7 @@ import Transactions from "../components/pages/transaction/ViewTransaction";
 import Navbar from "../components/layout/NavBar";
 import home from "../components/pages/wallet/Home";
 import SendMoney from "../components/pages/wallet/SendMoney";
+import BillPayment from "../components/pages/billpayment/BillPayment"
 
 
 class Routers extends React.Component {
@@ -31,6 +32,7 @@ class Routers extends React.Component {
               <PrivateRoute path="/bank-accounts" component={BankAccounts} />
               <PrivateRoute path="/transactions" component={Transactions} />
               <PrivateRoute path="/send-money" component={SendMoney} />
+              <PrivateRoute path="/bill-payment" component={BillPayment}/>
               <PrivateRoute path="/" component={home} exact={true}/>
             </div>
             <Route component={Redirected} />

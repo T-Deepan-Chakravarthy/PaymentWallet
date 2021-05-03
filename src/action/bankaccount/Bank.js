@@ -18,15 +18,23 @@ export const addbankaccount = bankaccount => {
 }   
 }     
 
-const _ViewBankaccount  = getBankList => ({
-    type:"VIEW_BANK_LIST",
-    getBankList
-});
+const _getBankList = list =>({
+    type : "GET_BANK_LIST",
+    list
+})
 
-export const  getBankList = walletId => {
-   return(dispatch) => {
-    return axios.get(`http://localhost:9191/api/pwa/account/viewAll/${walletId}`).then(result =>{
-        dispatch(_ViewBankaccount(result.data))
-    });
-}
+export const getBankList = ({walletId}={}) =>{
+    return (dispatch) => {
+        console.log(typeof walletId);
+        return axios.get(`http://localhost:9191/api/pwa/account/viewAll/${walletId}`).then(result=>{
+            console.log(result);
+            let list = []
+            result.data.forEach(element => {
+                list.push(element);
+            });
+            dispatch(_getBankList(list));
+        }).catch(error=>{
+            console.log(error.response.data);
+        })
+    }
 }

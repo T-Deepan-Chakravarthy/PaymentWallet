@@ -12,7 +12,7 @@ const User = {
     console.log("login");
     this.customer.name = customer.name;
     this.customer.mobileNo = customer.mobileNo;
-    this.customer.wallet = { ...customer.walletDTO };
+    this.customer.wallet = { ...customer.walletDto };
     this.isLoggedIn = true;
     console.log(User.getLoggedIn());
   },
