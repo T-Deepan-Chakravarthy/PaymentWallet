@@ -19,6 +19,14 @@ const Reducer = (state = [],action) => {
                 ...state,
                 action.bankaccount
             ]
+        
+        case "VIEW_BANK_LIST":
+        console.log(action.getBankList);
+        return action.getBankList;
+
+        case "FUND_TRANSFER":
+            return action.customer;
+        
         default:
             return state;
     }

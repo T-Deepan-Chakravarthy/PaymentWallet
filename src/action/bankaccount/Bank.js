@@ -15,8 +15,18 @@ export const addbankaccount = bankaccount => {
             dispatch(_addBankAccount(result.data))
             }
         );  
-          
-    }
+}   
+}     
+
+const _ViewBankaccount  = getBankList => ({
+    type:"VIEW_BANK_LIST",
+    getBankList
+});
+
+export const  getBankList = walletId => {
+   return(dispatch) => {
+    return axios.get(`http://localhost:9191/api/pwa/account/viewAll/${walletId}`).then(result =>{
+        dispatch(_ViewBankaccount(result.data))
+    });
 }
-
-
+}

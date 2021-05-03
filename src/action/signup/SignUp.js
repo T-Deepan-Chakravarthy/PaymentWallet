@@ -49,3 +49,18 @@ export const getList = () =>{
         })
     }
 }
+
+const _fundTransfer = customer =>({
+    type : "FUND_TRANSFER",
+    customer
+})
+
+export const fundTransfer = (source,target,amount) =>{
+    return (dispatch) => {
+        return axios.put(`http://localhost:9191/api/pwa/wallet/fund-transfer/${source}/${target}/${amount}`).then(result=>{
+            dispatch(_fundTransfer(result.data));
+        }).catch(error=>{
+            console.log(error.response);
+        })
+    }
+}

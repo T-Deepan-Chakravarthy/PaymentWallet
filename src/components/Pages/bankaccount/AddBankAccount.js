@@ -14,8 +14,8 @@ export default  class AddBanKAccount extends React.Component{
                 bankName:"",
                 balance:"",
                 wallet:{
-                    walletId:40,
-                    balance:1000
+                 walletId:0,
+                 balance:0
                 }
 
             }
@@ -31,6 +31,9 @@ export default  class AddBanKAccount extends React.Component{
     handleSubmit = event =>{
         event.preventDefault();
         console.log(this.state.bankaccount);
+        this.setState({wallet:{...user.getCustomer().wallet}})
+        console.log(user.getCustomer());
+        console.log(this.state.bankaccount.wallet);
         store().dispatch(addbankaccount(this.state.bankaccount));
     }
 
@@ -48,7 +51,7 @@ export default  class AddBanKAccount extends React.Component{
                     <input 
                     className="form-control form-control-lg"
                     placeholder="Enter your Account Number"
-                    name="accountNumber"
+                    name="accountNo"
                     type="text"
                     onChange={(event)=>this.handleChange(event)}/>
                     </div>
