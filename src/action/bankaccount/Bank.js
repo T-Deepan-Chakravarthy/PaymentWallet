@@ -1,5 +1,5 @@
 import axios from "../../axios/Axios"
-import User from "../../components/pages/wallet/User"
+
 
 const _addBankAccount = bankaccount => ({
     type:'ADD_ACCOUNT',

@@ -28,6 +28,13 @@ const Reducer = (state = [],action) => {
 
         case "FUND_TRANSFER":
             return action.customer;
+
+        case "ADD_BILL":
+         return [
+            ...state,
+            action.billpayment
+         ]
+    
         
         default:
             return state;

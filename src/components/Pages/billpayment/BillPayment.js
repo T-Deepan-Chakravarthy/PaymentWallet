@@ -2,6 +2,9 @@ import React from 'react'
 import store from '../../../store/Store'
 import User from '../wallet/User'
 import {addbillpayment} from '../../../action/billpayment/Bill'
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+
 export default  class BillPayment extends React.Component{
 
     constructor(props)
@@ -9,7 +12,7 @@ export default  class BillPayment extends React.Component{
         super(props);
         this.state = {
              billpayment:{
-                billId:"",
+                billId:0,
                 amount:"",
                 billType:"",
                 paymentDate:"",
@@ -40,7 +43,7 @@ export default  class BillPayment extends React.Component{
             <div className="container">
             <div className="w-75 mx-auto shadow p-5">
             <div className="font-weight-bold">
-            <h2 className="text-center mb-4">AddBanKAccount</h2>
+            <h2 className="text-center mb-4">AddBill</h2>
             </div>
                 <form onSubmit={event=>this.handleSubmit(event)}>
                     <div className="form-group">
@@ -52,30 +55,26 @@ export default  class BillPayment extends React.Component{
                     onChange={(event)=>this.handleChange(event)}/>
                     </div>
                     <div className="form-group">
-                    <input 
-                    className="form-control form-control-lg"
-                    placeholder="Enter your Ifsc Code"
-                    name=""
-                    type="text"
-                    onChange={(event)=>this.handleChange(event)}/>
-                    </div>
-                    <div className="form-group">
-                    <Dropdown name="billType"  onSelect={(event)=>this.handleChange(event)}>
-                    
-                    </Dropdown>
+                    <select name="billType" onChange={(event)=>this.handleChange(event)}>
+                    <option value="DTH">DTH</option>
+                    <option value="MOBILEPREPAID">MOBILEPREPAID</option>
+                    <option value="MOBILEPOSTPAID">MOBILEPOSTPAID</option>
+                    <option value="CREDITCARD">CREDITCARD</option>
+                    <option value="LPG">LPG</option>
+                    </select>
                     </div>
                     <div className="form-group">
                     <input 
                     className="form-control form-control-lg"
-                    placeholder="Enter your Balance"
-                    name="balance"
+                    placeholder="Enter your PaymentDate"
+                    name="paymentDate"
                     type="text"
                     onChange={(event)=>this.handleChange(event)}/>
                     </div>
                     <div className="row">
                     <div className="input-field col s12 signup-btn">
                     <button className="btn btn-primary btn-block type" type="submit">
-                     Add BanK Account
+                     Add Bill
                     </button>
                     </div>
                     </div>
