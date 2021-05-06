@@ -1,0 +1,39 @@
+import { connect } from 'react-redux';
+import User from '../../localstorage/User';
+import {update} from '../../action/WalletActions';
+
+const SetPassword = props => {
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        let customer = User.getCustomer();
+        if(document.getElementById("password").value==document.getElementById("confirm").value){
+            customer = {...customer,password:document.getElementById("password").value};
+            console.log(customer);
+            props.update(customer);
+            // props.history.push('/profile')
+        }
+    }
+
+    return(
+        <div>
+            <form onSubmit={event=>handleSubmit(event)}>
+                <input type="text" id="password" />
+                <input type="text" id="confirm" />
+                <button type="submit">Set Password</button>
+            </form>
+        </div>
+    )
+}
+
+const mapStateToProps = state =>({
+    customer : state
+})
+
+const mapDispatchToProps = (dispatch,customer) =>{
+    return{
+        update : (customer)=>dispatch(update(customer))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SetPassword);
