@@ -85,6 +85,7 @@ const Transactions = props =>{
                 ()=>{
                     setIsType(true);
                     setType("SEND");
+                    console.log("send");
                 }
             }>Sent</button>
             

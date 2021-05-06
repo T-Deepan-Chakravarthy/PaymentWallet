@@ -10,7 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import Redirected from "../components/pages/Redirected";
 import BankAccounts from "../components/pages/BankAccounts";
 import Transactions from "../components/pages/Transactions";
-import Navbar from "../components/layout/navbar";
+import Navbar from "../components/layout/Navbar";
 import home from "../components/pages/home";
 import SendMoney from "../components/pages/SendMoney";
 import SingleTransaction from '../components/pages/SingleTransaction';

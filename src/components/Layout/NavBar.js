@@ -3,12 +3,12 @@ import User from "../../localstorage/User";
 
 const Navbar = props => {
   return (
-    <div>
-      <NavLink to="/" exact={true} className="">HOME</NavLink>
-      <NavLink to="/bank-accounts">BANK ACCOUNTS</NavLink>
-      <NavLink to="/transactions">TRANSACTIONS</NavLink>
-      <NavLink to="/profile">PROFILE</NavLink>
-      <NavLink to="/login" onClick={()=>User.logout()}>Logout</NavLink>
+    <div className="header_nav">
+      <NavLink to="/" exact={true} activeclassName="activeNav">HOME</NavLink>
+      <NavLink to="/bank-accounts" activeClassName="activeNav">BANK ACCOUNTS</NavLink>
+      <NavLink to="/transactions" activeClassName="activeNav">TRANSACTIONS</NavLink>
+      <NavLink to="/profile" activeClassName="activeNav">PROFILE</NavLink>
+      <NavLink to="/login" onClick={()=>User.logout()} activeClassName="activeNav">Logout</NavLink>
     </div>
   );
 };

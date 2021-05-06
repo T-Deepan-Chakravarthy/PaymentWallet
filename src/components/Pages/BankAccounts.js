@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import User from '../../localstorage/User';
 import { useEffect, useState } from 'react';
 import store from '../../store/Store';
-
+import {Link} from 'react-router-dom';
 
 
 const BankAccounts = props =>{
@@ -50,13 +50,19 @@ const BankAccounts = props =>{
     try{
     return (
         <div>
-            send money page
+            AddBankAccount
+            <div>
+                <Link to="/AddBankAccount">
+                <button type="button">AddBankAccount</button>
+                </Link>
+            </div>
             <table border="1px" >
                 <tr>
                     <th>Account No</th>
                     <th>Ifsc Code</th>
                     <th>Bank Name</th>
                     <th>Balance</th>
+                    <th>Delete</th>
                 </tr>
                 {props.list.map(bank=>{
                     return(
@@ -73,13 +79,13 @@ const BankAccounts = props =>{
                             <td>{bank.ifscCode}</td>
                             <td>{bank.bankName}</td>
                             <td>{bank.balance}</td>
-                            <button type="button" onClick={
+                            <td><button type="button" onClick={
                                 ()=>{
                                     let accountNo = bank.accountNo;
                                     console.log(accountNo)
                                     store.dispatch(deleteBank({accountNo},bank.ifscCode));
                                 }
-                            }>Delete</button>
+                            }>Delete</button></td>
                         </tr>
                     )
                 })
