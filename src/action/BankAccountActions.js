@@ -17,7 +17,7 @@ export const getBankList = ({walletId}={}) =>{
             });
             dispatch(_getBankList(list));
         }).catch(error=>{
-            console.log(error);
+            alert(error.response.data);
         })
     }
 }
@@ -36,7 +36,9 @@ export const addbankaccount = bankaccount => {
             User.setBank(result.data);  
             dispatch(_addBankAccount(result.data))
             }
-        );  
+        ).catch(error=>{
+            alert(error.response.data);
+        }) 
 }   
 }     
 

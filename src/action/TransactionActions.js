@@ -18,7 +18,7 @@ export const getTransactionList = ({walletId}={}) =>{
             });
             dispatch(_getTransactionList(list));
         }).catch(error=>{
-            console.log(error.response.data);
+            alert(error.response.data);
         })
     }
 }
@@ -37,7 +37,9 @@ export const addbillpayment = billpayment => {
             User.setBill(result.data);   
             dispatch(_addBillPayment(result.data))
             }
-        );  
+        ).catch(error=>{
+            alert(error.response.data);
+        })  
 }   
 }   
 
@@ -53,7 +55,7 @@ export const deleteTransaction = ({transactionId}) =>{
             let transaction = result.data;
             dispatch(_deleteTransaction);
         }).catch(error=>{
-            console.log(error);
+            alert(error.response.data);
         })
     }
 }

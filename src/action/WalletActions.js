@@ -15,7 +15,9 @@ export const createAccount = customer => {
             User.login(result.data);    
             dispatch(_createAccount(result.data))
             }
-        );    
+        ).catch(error=>{
+            alert(error.response.data);
+        });   
     }
 }
 
@@ -33,7 +35,9 @@ export const login = customer => {
             let details = result.data;
             console.log(details);
             dispatch(_login(details));
-        })
+        }).catch(error=>{
+            alert(error.response.data);
+        }); 
     }
 }
 
@@ -50,7 +54,9 @@ export const getList = () =>{
                 list.push(element);
             });
             dispatch(_getList(list));
-        })
+        }).catch(error=>{
+            alert(error.response.data);
+        }); 
     }
 }
 
@@ -66,7 +72,9 @@ export const fundTransfer = (source,target,{amount}) =>{
         dispatch(_fundTransfer(transaction));
         }).catch(error=>{
             console.log(error.response);
-        })
+        }).catch(error=>{
+            alert(error.response.data);
+        }); 
     }
 }
 
@@ -84,7 +92,7 @@ export const addMoney = (account,{walletId},{amount}) =>{
             console.log(transaction);
             dispatch(_addMoney(transaction));
         }).catch(error=>{
-            console.log(error.response.data);
+            alert(error.response.data);
         })
     }
 }
@@ -103,7 +111,7 @@ export const update = customer =>{
             let user = result.data;
             dispatch(_update(user));
         }).catch(error=>{
-            console.log(error.response.data);
+            alert(error.response.data);
         })
     }
 }
@@ -121,7 +129,7 @@ export const deposit = ({walletId},{amount}) =>{
             console.log(transaction);
             dispatch(_deposit(transaction));
         }).catch(error=>{
-            console.log(error.response.data);
+            alert(error.response.data);
         })
     }
 }
@@ -140,7 +148,7 @@ export const withdraw = ({walletId},{amount}) =>{
             console.log(transaction);
             dispatch(_withdraw(transaction));
         }).catch(error=>{
-            console.log(error.response.data);
+            alert(error.response.data);
         })
     }
 }
