@@ -3,6 +3,8 @@ import User from "../../localstorage/User";
 import { withdraw, deposit } from "../../action/WalletActions";
 import { store } from "../../App";
 import { useEffect, useState } from "react";
+import Button from '@material-ui/core/Button';
+import { FormControl,TextField } from "@material-ui/core";
 
 const DepositWithdraw = (props) => {
   const [trans, setTrans] = useState({
@@ -22,9 +24,15 @@ const DepositWithdraw = (props) => {
   return (
     <div>
       <div>
-        {User.target}
+        {User.target}</div>
+        <div>
+        <div class="ui input">
         <input type="number" id="amount" /><br/>
-        <button
+        </div>
+        <div class="ui divider"></div>
+             <img class="ui top aligned tiny image" src=""/>
+        <Button
+        variant="contained" color="secondary" 
           type="button"
           onClick={() => {
               console.log(walletId);
@@ -34,9 +42,13 @@ const DepositWithdraw = (props) => {
             );
           }}
         >
-          with
-        </button><br/>
-        <button
+          WITHDRAW
+        </Button>
+        <div class="ui divider"></div>
+        <img class="ui top aligned tiny image" src=""/>
+        
+        <Button
+         variant="contained" color="primary" 
           type="button"
           onClick={() => {
             let amount = document.getElementById("amount").value;
@@ -46,8 +58,9 @@ const DepositWithdraw = (props) => {
             );
           }}
         >
-          deposit
-        </button>
+          Deposit
+        </Button>
+        <div class="ui divider"></div>
       </div>
       {trans.transactionDate}
       {trans.transactionType}

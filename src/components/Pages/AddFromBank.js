@@ -3,6 +3,9 @@ import User from "../../localstorage/User";
 import { addMoney } from "../../action/WalletActions";
 import { store } from "../../App";
 import { useEffect, useState } from "react";
+import Button from '@material-ui/core/Button';
+import { TextField } from '@material-ui/core';
+
 
 const AddFromBank = (props) => {
 
@@ -26,8 +29,10 @@ const AddFromBank = (props) => {
     <div>
       <div>
         {User.target}
-        <input type="number" id="amount" />
-        <button
+        <div class="ui input">
+        <input placeholder="Enter your amount" type="number" id="amount" />
+        </div>
+        <Button variant="contained" color="primary"
           type="button"
           onClick={() => {
             let amount = document.getElementById("amount").value;
@@ -38,9 +43,8 @@ const AddFromBank = (props) => {
           }}
         >
           Add
-        </button>
+        </Button>
       </div>
-        {trans.transactionDate}
         {trans.transactionType}
         {trans.amount}
         {trans.description}

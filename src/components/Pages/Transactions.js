@@ -3,11 +3,21 @@ import { connect } from 'react-redux';
 import User from '../../localstorage/User';
 import { useEffect, useState } from 'react';
 import {store} from '../../App';
+import Button from '@material-ui/core/Button';
+
 
 const Transactions = props =>{
     let walletId = User.getCustomer().wallet.walletId;
     
+    useEffect(()=>{
+        props.getTransactionList({walletId});
+    },[])
+
     console.log(walletId);
+
+    let tempList = props.list;
+    
+    const [renderList,setRenderList] = useState(tempList);
 
     // const [list,setList] = useState([{
     //     transactionId : "",
@@ -17,14 +27,12 @@ const Transactions = props =>{
     //     amount : ""
     // }])
 
-    const [dummy,setDummy] = useState(props.getTransactionList({walletId}));
-
+    //const [dummy,setDummy] = useState(props.getTransactionList({walletId}));
     // useEffect(()=>{
     //     props.getTransactionList({walletId});
     //     setList(props.list);
     // },[])
 
-    let tempList = props.list;
     
 
     const [isType,setIsType] = useState(false);
@@ -66,7 +74,10 @@ const Transactions = props =>{
         if(isRecipient){
             temp = temp.filter(trans=>trans.description.match(recipient));
         }
-         tempList=temp;
+        console.log(temp);
+        console.log(tempList);
+        setRenderList(temp);
+        console.log(renderList);
     }catch(error){
         console.log(error);
      }
@@ -79,76 +90,81 @@ const Transactions = props =>{
     try{
     return (
         <div>
-            transactions page
-            
-            <button type="button" onClick={
+            <div class="ui segment pushable">
+                <div class="ui inverted vertical labeled icon ui overlay left thin visible sidebar menu">
+                    <a class="item">
+                        <i aria-hidden="true" ></i> <Button variant="contained" color="primary" type="button" onClick={
                 ()=>{
                     setIsType(true);
                     setType("SEND");
                     console.log("send");
                 }
-            }>Sent</button>
-            
-            <button type="button" onClick={
+            }>Sent</Button></a>
+                        <a class="item"><i aria-hidden="true" ></i> <Button variant="contained" color="primary" type="button" onClick={
                 ()=>{
                     setIsType(true);
                     setType("RECEIVE");
                 }
-            }>Received</button>
-
-            <button type="button" onClick={
+            }>Received</Button><br/></a>
+            <a class="item"><i aria-hidden="true" ></i><Button variant="contained" color="primary" type="button" onClick={
                 ()=>{
                     setIsType(false);
                 }
-            }>All</button><br/>
+            }>All</Button><br/></a>
+           
             
-            <input type="checkbox" id="fromCheck" onChange={
+           <a class="item"><i aria-hidden="true" ></i><input type="checkbox" id="fromCheck" onChange={
                 ()=>{
                     setCheckFrom(document.getElementById("fromCheck").checked);
                 }
             } />
-
-            <input type="Date" id="from" onChange={
-                event=>{
-                    setIsFrom(true)
-                    setFrom(event.target.value);
-                }
-            } />
-
-            <input type="checkbox" id="toCheck" onChange={
+            <br/></a>
+       
+            <a class="item"><i aria-hidden="true" ></i><input type="checkbox" id="toCheck" onChange={
                 ()=>{
                     setCheckTo(document.getElementById("toCheck").checked);
                 }
-            } />
+            } /><br/></a>
 
-            <input type="Date" id="to" onChange={
+          <a class="item"><i aria-hidden="true" ></i><input type="Date" id="to" onChange={
                 event=>{
                     setIsTo(true);
                     setTo(event.target.value);
                 }
-            } />
-            
-            <button type="button" onClick={
+            } /><br/></a>
+
+               <a class="item"><i aria-hidden="true"></i><input type="Date" id="from" onChange={
+                event=>{
+                    setIsFrom(true);
+                    setFrom(event.target.value);
+                }
+            } /><br/></a>
+
+          <a class="item"><i aria-hidden="true"></i><Button variant="contained" color="primary" type="button" onClick={
                 ()=>{
                     setIsRecipient(true);
                     setReceipient("BILL");   
                 } 
-                }>Bill</button>
+                }>Bill</Button><br/></a>
 
-            <button type="button" onClick={
+
+           <a class="item"><i aria-hidden="true" ></i> <Button variant="contained" color="primary" type="button" onClick={
                 ()=>{
                     setIsRecipient(true);
                     setReceipient("Sending");
                 }
-            }>Benificiary</button>
+            }>Benificiary</Button><br/></a>
 
-            <button type="button" onClick={
+           <a class="item"><i aria-hidden="true" ></i><Button variant="contained" color="primary" type="button" onClick={
                 ()=>{
                     setIsRecipient(false);
                 }
-            }>All</button><br/>
-            
-            <table border="1px" >
+            }>All</Button><br/></a>
+
+            </div><div class="pusher"><div class="ui basic segment"><h3 class="ui header"></h3><img src="https://img.freepik.com/free-photo/finance-money-transaction-technology_31965-1134.jpg?size=626&ext=jpg" class="ui image"/></div></div></div>
+           
+        
+            <table   class="ui teal very compact table"  border="1px" >
                 <tr>
                     <th>ID</th>
                     <th>Type</th>
@@ -157,7 +173,7 @@ const Transactions = props =>{
                     <th>Description</th>
                     <th>Delete</th>
                 </tr>
-                {tempList
+                {renderList
                 .map(transaction=>{
                     return(
                         <tr>
@@ -166,13 +182,13 @@ const Transactions = props =>{
                             <td>{transaction.transactionDate}</td>
                             <td>{transaction.amount}</td>
                             <td>{transaction.description}</td>
-                            <td><button type="button" onClick={
+                            <td><Button variant="contained" color="secondary" import  type="button" onClick={
                                 ()=>{
                                     let transactionId = transaction.transactionId;
                                     console.log(transactionId)
                                     store.dispatch(deleteTransaction({transactionId}));
                                 }
-                            }>Delete</button></td>
+                            }>Delete</Button></td>
                             </tr>
                     )
                 })}

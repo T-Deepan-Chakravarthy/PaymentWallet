@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import User from '../localstorage/User'
 
 
 
@@ -33,7 +33,8 @@ export const addbillpayment = billpayment => {
         console.log("Addbillpaymentaction");
         console.log(billpayment);
         return axios.post("http://localhost:9191/api/pwa/bill-payment/add-bill",billpayment).then(result=>{
-            console.log(result.data);    
+            console.log(result.data); 
+            User.setBill(result.data);   
             dispatch(_addBillPayment(result.data))
             }
         );  

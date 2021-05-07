@@ -1,5 +1,6 @@
 import React from "react";
 import User from "../../localstorage/User"
+import Button from '@material-ui/core/Button';
 
 class Logout extends React.Component{
 
@@ -17,8 +18,8 @@ class Logout extends React.Component{
         return(
             <div>
                 Do you want logout?
-                <button type="button" onClick={()=>this.logout()}>Yes</button>
-                <button type="button" >No</button>
+                <Button type="button"  variant="contained" color="primary" onClick={()=>this.logout()}>Yes</Button>
+                <Button variant="contained" color="secondary" type="button" >No</Button>
             </div>
         )
     }

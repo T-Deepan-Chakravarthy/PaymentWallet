@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {getList} from '../../action/WalletActions';
 import { connect } from 'react-redux';
 import User from '../../localstorage/User';
-import {useDispatch} from 'react-redux'
+import Button from '@material-ui/core/Button';
 
 // import axios from "axios";
 // import { useEffect } from "react";
@@ -34,14 +34,16 @@ const SendMoney = (props) => {
 
     return (
     <form>
-      <input type="text" id="search" onChange={()=>{
+      <div class="ui inverted segment">
+      <div class="ui inverted left icon input">
+      <input placeholder="Search" type="text" id="search" onChange={()=>{
           console.log(props.list);
           if(props.list!=undefined){
             setList(props.list.filter((customer)=>customer.mobileNo.match(document.getElementById("search").value)));
           }
           console.log(list);
-          }} />
-      <table border="1px">
+          }} /></div></div>
+      <table class="ui teal very compact table">
         <tr>
           <th>Name</th>
           <th>Mobile Number</th>
@@ -55,7 +57,7 @@ const SendMoney = (props) => {
             return (
               <tr>
                 <td>{customer.name}</td>
-                <button
+                <Button  variant="contained" color="primary"
                   type="button"
                   onClick={() => {
                     User.setTarget(customer.mobileNo);
@@ -63,7 +65,7 @@ const SendMoney = (props) => {
                   }}
                 >
                   <td>{customer.mobileNo}</td>
-                </button>
+                </Button>
               </tr>
             );
           })}

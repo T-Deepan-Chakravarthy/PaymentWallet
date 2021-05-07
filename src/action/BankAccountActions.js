@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import User from '../localstorage/User';
 
 const _getBankList = list =>({
     type : "GET_BANK_LIST",
@@ -32,7 +32,8 @@ export const addbankaccount = bankaccount => {
         console.log("Addbankaccountaction");
         console.log(bankaccount);
         return axios.post("http://localhost:9191/api/pwa/account/add",bankaccount).then(result=>{
-            console.log(result.data);    
+            console.log(result.data); 
+            User.setBank(result.data);  
             dispatch(_addBankAccount(result.data))
             }
         );  

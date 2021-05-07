@@ -1,7 +1,7 @@
 const Redirected = () =>{
     return (
-        <div>
-            404 Not found
+        <div class="ui center aligned container">
+            <h1>404 Not found</h1>
         </div>
     )
 }

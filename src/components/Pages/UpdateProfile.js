@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import User from '../../localstorage/User';
 import {update} from '../../action/WalletActions';
+import Button from '@material-ui/core/Button';
 
 const UpdateProfile = props =>{
 
@@ -17,8 +18,12 @@ const UpdateProfile = props =>{
     return(
         <div>
             <form onSubmit={event=>handleSubmit(event)}>
-                <input type="text" id="name" />
-                <button type="submit">Update</button>
+            <div class="ui inverted segment">
+            <div class="ui input">
+                <input  placeholder="Enter Your Name" type="text" id="name" />
+            </div>
+            </div>
+                <Button variant="contained" color="primary"  type="submit">Update</Button>
             </form>
         </div>
     )

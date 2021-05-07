@@ -4,6 +4,7 @@ import User from '../../localstorage/User';
 import { useEffect, useState } from 'react';
 import store from '../../store/Store';
 import {Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 
 const BankAccounts = props =>{
@@ -20,7 +21,11 @@ const BankAccounts = props =>{
     //     balance : ""
     // }]);
 
-    const [dummy,setDummy] = useState(props.getBankList({walletId}));
+    //const [dummy,setDummy] = useState(props.getBankList({walletId}));
+    
+    useEffect(()=>{
+        props.getBankList({walletId});
+    },[])
 
     // useEffect(()=>{
     //     (async function prepare(){
@@ -50,13 +55,13 @@ const BankAccounts = props =>{
     try{
     return (
         <div>
-            AddBankAccount
             <div>
+            <div class="ui hidden divider"></div>
                 <Link to="/AddBankAccount">
-                <button type="button">AddBankAccount</button>
+                <Button  variant="contained" color="primary" type="button">AddBankAccount</Button>
                 </Link>
             </div>
-            <table border="1px" >
+                <table  class="ui teal very compact table"  >
                 <tr>
                     <th>Account No</th>
                     <th>Ifsc Code</th>
@@ -68,24 +73,24 @@ const BankAccounts = props =>{
                     return(
                         <tr>
                             <td>
-                                <button type="button" onClick={
+                                <Button variant="contained" color="primary" type="button" onClick={
                                     ()=>{
                                     User.setBank(bank);
                                     props.history.push('/view-account')
                                 }}>
                                     {bank.accountNo}
-                                </button>
+                                </Button>
                             </td>
                             <td>{bank.ifscCode}</td>
                             <td>{bank.bankName}</td>
                             <td>{bank.balance}</td>
-                            <td><button type="button" onClick={
+                            <td><Button variant="contained" color="secondary" type="button" onClick={
                                 ()=>{
                                     let accountNo = bank.accountNo;
                                     console.log(accountNo)
                                     store.dispatch(deleteBank({accountNo},bank.ifscCode));
                                 }
-                            }>Delete</button></td>
+                            }>Delete</Button></td>
                         </tr>
                     )
                 })

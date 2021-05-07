@@ -3,6 +3,7 @@ import User from "../../localstorage/User";
 import { fundTransfer } from "../../action/WalletActions";
 import { store } from "../../App";
 import { useEffect, useState } from "react";
+import Button from '@material-ui/core/Button';
 
 const SingleTransaction = (props) => {
   const [trans, setTrans] = useState({
@@ -21,11 +22,15 @@ const SingleTransaction = (props) => {
 
   return (
     <div>
-      <div>
+      <div>Amount sent to:
         {User.target}
+        <div class="ui inverted segment">
+      <div class="ui inverted left icon input">
         <input type="number" id="amount" />
-        <button
-          type="button"
+        </div>
+        </div>
+        <Button
+          type="button" variant="contained" color="primary" 
           onClick={() => {
             let amount = document.getElementById("amount").value;
             store.dispatch(
@@ -35,10 +40,8 @@ const SingleTransaction = (props) => {
           }}
         >
           Send
-        </button>
+        </Button>
       </div>
-
-      
       {trans.transactionId}
       {trans.transactionDate}
       {trans.transactionType}

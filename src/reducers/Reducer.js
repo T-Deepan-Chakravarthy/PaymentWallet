@@ -13,15 +13,11 @@ const Reducer = (state = [],action) => {
         case 'FUND_TRANSFER':
             return {transaction:{...action.transaction}};
         case "ADD_BILL":
-         return [
-            ...state,
-            action.billpayment
-         ]  
+         return action.billpayment
+         
         case "ADD_ACCOUNT":
-            return [
-                ...state,
-                action.bankaccount
-            ]
+            return action.bankaccount;
+        
         case 'ADD_MONEY':
             return {transaction:{...action.transaction}};
         case 'UPDATE':

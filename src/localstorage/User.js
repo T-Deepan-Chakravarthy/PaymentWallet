@@ -18,6 +18,17 @@ const User = {
       balance : 0
     }
   },
+  
+    billpayment:{
+      billId:0,
+      amount:"",
+      billType:"",
+      paymentDate:"",
+      wallet:{
+        walletId : 0,
+        balance : 0
+      }
+  },
   isLoggedIn: false,
   login(customer) {
     console.log("login");
@@ -51,15 +62,34 @@ const User = {
   setTarget(mobileNo){
     this.target = mobileNo;
   },
+  isBank:false,
   setBank(bank){
     this.bank.accountNo = bank.accountNo;
     this.bank.balance = bank.balance;
     this.bank.bankName = bank.bankName;
     this.bank.ifscCode = bank.ifscCode;
     this.bank.wallet = {...bank.walletDto};
+    this.isBank = true;
   },
   getBank(){
     return this.bank;
+  },
+  getBankCreated(){
+    return this.isBank;
+  },
+  isBill:false,
+  setBill(billpayment){
+    this.billpayment.billId=billpayment.billId;
+    this.billpayment.amount=billpayment.amount;
+    this.billpayment.billType=billpayment.billType;
+    this.billpayment.paymentDate=billpayment.paymentDate;
+    this.isBill = true;
+  },
+  getBill(){
+    return this.billpayment;
+  },
+  getBillCreated(){
+    return this.isBill;
   }
 };
 

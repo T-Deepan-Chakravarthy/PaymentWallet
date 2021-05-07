@@ -22,6 +22,7 @@ export default function Footer () {
     return (
 
       <div>
+         <div class="ui hidden divider"></div>
         <footer class="bg-dark text-center text-white">
           <div class="container p-2">
             <section class="mb-2">

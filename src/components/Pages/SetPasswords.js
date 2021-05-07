@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import User from '../../localstorage/User';
 import {update} from '../../action/WalletActions';
+import Button from '@material-ui/core/Button';
 
 const SetPassword = props => {
 
     const handleSubmit = event => {
         event.preventDefault();
         let customer = User.getCustomer();
-        if(document.getElementById("password").value==document.getElementById("confirm").value){
+        if(document.getElementById("password").value===document.getElementById("confirm").value){
             customer = {...customer,password:document.getElementById("password").value};
             console.log(customer);
             props.update(customer);
@@ -17,12 +18,27 @@ const SetPassword = props => {
 
     return(
         <div>
+            <div class="ui hidden divider"></div>
+            <div class="ui centered card">
+            <div class="content">
+    <a class="header">SET PASSWORD<br/></a></div>
             <form onSubmit={event=>handleSubmit(event)}>
-                <input type="text" id="password" />
-                <input type="text" id="confirm" />
-                <button type="submit">Set Password</button>
-            </form>
+            <div class="ui input">
+                <input type="text" placeholder="Enter password" id="password" />
+                </div>
+                <div class="ui hidden divider"></div>
+                <div class="ui input">
+                 <input type="text" placeholder="Enter confirm password" id="confirm" />
+                </div>
+                <div class="ui hidden divider"></div>
+                <span>
+                <Button variant="contained" color="primary"  type="submit">Set Password</Button>
+         
+         </span>   </form>
+            </div>
+            <div class="ui hidden divider"></div>
         </div>
+        
     )
 }
 

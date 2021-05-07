@@ -1,10 +1,13 @@
 import React from 'react';
 import {createAccount} from '../../action/WalletActions';
-import store from '../../App'
+import {store} from '../../App'
 import User from '../../localstorage/User';
 import SignUpValidations from './SignUpValidations'
 import Box from '@material-ui/core/Box';
 import { FormControl, TextField } from '@material-ui/core';
+import "./styles.css"
+import {Link} from 'react-router-dom';
+
 
 export default class CreateAccount extends React.Component{
 
@@ -88,7 +91,7 @@ export default class CreateAccount extends React.Component{
 
     handleSubmit = event =>{
         event.preventDefault();
-        store().dispatch(createAccount(this.state.customer));
+        store.dispatch(createAccount(this.state.customer));
         setTimeout(this.checkLogin,1000);
     }
 
@@ -133,6 +136,9 @@ export default class CreateAccount extends React.Component{
                     {this.displayValidationErrors('password')}
                    <br/><br/>
                  <button  className={`btn btn-primary btn-block ${this.isFormValid() ? '' : 'disabled'}`}  type="submit">SignUp</button> <br/>
+                 <Link to="/login">
+                        <button  className="btn btn-primary btn-block" type="button" >LOGIN</button>
+                    </Link>  
                 </form>
             </div>
             </section>
